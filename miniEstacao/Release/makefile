@@ -45,56 +45,56 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 AR += \
-/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/arduino.ar \
+/home/jose/git/miniEstacao/miniEstacao/Release/arduino.ar \
 
 ELF += \
-miniEstacaoV6.elf \
+miniEstacao.elf \
 
 EEP += \
-miniEstacaoV6.eep \
+miniEstacao.eep \
 
 FLASH_IMAGE += \
-miniEstacaoV6.hex \
+miniEstacao.hex \
 
 
 # All Target
-all: miniEstacaoV6
+all: miniEstacao
 
 # Tool invocations
-miniEstacaoV6: $(FLASH_IMAGE)
+miniEstacao: $(FLASH_IMAGE)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-size" -A "/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/miniEstacaoV6.hex"
+	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-size" -A "/home/jose/git/miniEstacao/miniEstacao/Release/miniEstacao.hex"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/arduino.ar: $(AR_OBJ)
+/home/jose/git/miniEstacao/miniEstacao/Release/arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-ar" rcs "/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/arduino.ar"   $(AR_OBJ)
+	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-ar" rcs "/home/jose/git/miniEstacao/miniEstacao/Release/arduino.ar"   $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-miniEstacaoV6.elf: $(LINK_OBJ) $(AR)
+miniEstacao.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-gcc" -Os -Wl,--gc-sections -mmcu=atmega2560 -o "/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/miniEstacaoV6.elf"   $(LINK_OBJ) $(AR)  "/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/arduino.ar" "-L/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release" -lm
+	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-gcc" -Os -Wl,--gc-sections -mmcu=atmega2560 -o "/home/jose/git/miniEstacao/miniEstacao/Release/miniEstacao.elf"   $(LINK_OBJ) $(AR)  "/home/jose/git/miniEstacao/miniEstacao/Release/arduino.ar" "-L/home/jose/git/miniEstacao/miniEstacao/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 
-miniEstacaoV6.eep: $(ELF)
+miniEstacao.eep: $(ELF)
 	@echo 'Create eeprom image'
-	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-objcopy" -O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0 "/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/miniEstacaoV6.elf" "/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/miniEstacaoV6.eep"
+	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-objcopy" -O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0 "/home/jose/git/miniEstacao/miniEstacao/Release/miniEstacao.elf" "/home/jose/git/miniEstacao/miniEstacao/Release/miniEstacao.eep"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-miniEstacaoV6.hex: $(EEP)
+miniEstacao.hex: $(EEP)
 	@echo 'Create Flash image (ihex format)'
-	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-objcopy" -O ihex -R .eeprom "/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/miniEstacaoV6.elf" "/home/jose/Documentos/Projetos/Arduino/Programas/workspace/miniEstacaoV6/Release/miniEstacaoV6.hex"
+	"/home/jose/bin/arduino-1.5.2/hardware/tools/avr/bin/avr-objcopy" -O ihex -R .eeprom "/home/jose/git/miniEstacao/miniEstacao/Release/miniEstacao.elf" "/home/jose/git/miniEstacao/miniEstacao/Release/miniEstacao.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(ELF)$(C++_DEPS)$(AR)$(C_DEPS)$(CC_DEPS)$(FLASH_IMAGE)$(AR_OBJ)$(CPP_DEPS)$(LINK_OBJ)$(EEP)$(CXX_DEPS)$(C_UPPER_DEPS)$(SIZEDUMMY) miniEstacaoV6
+	-$(RM) $(ELF)$(C++_DEPS)$(AR)$(C_DEPS)$(CC_DEPS)$(FLASH_IMAGE)$(AR_OBJ)$(CPP_DEPS)$(LINK_OBJ)$(EEP)$(CXX_DEPS)$(C_UPPER_DEPS)$(SIZEDUMMY) miniEstacao
 	-@echo ' '
 
 .PHONY: all clean dependents

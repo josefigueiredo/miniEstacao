@@ -48,7 +48,6 @@ long pressBMP;
 
 //globais do programa
 long t1 = tempCont();
-long t2 = tempCont();
 byte pinLed = 13;
 float tempMedia;
 float uDTH;
@@ -88,21 +87,8 @@ void setup() {
 void loop() {
 	if (tempCont() >= 0.5 + t1) {
 		t1 = tempCont();
-		Serial.println("Alive and running...");
+		Serial.println("Em execução... enviar 'm' para mostrar dados");
 		invLed();
-	}
-
-	//amostragem por tempo 10 em 10 minutos
-	if (tempCont() >= 2 + t2) {
-		Serial.print("memoria livre: ");
-		Serial.println(memoriaLivre());
-		t2 = tempCont();
-		atualizaLeitura();
-		Serial.print("----------------------- Amostragem em: ");
-		Serial.println(t2);
-		mostra();
-		Serial.print("----------------------- Proxima em:");
-		Serial.println(t2 + 10);
 	}
 
 	//amostragem por comando de leitura
@@ -117,7 +103,7 @@ void loop() {
 			Serial.println(Ethernet.localIP());
 			break;
 		default:
-			Serial.println("comando nao identificado");
+			Serial.println("Comando nao identificado");
 			break;
 		}
 	}
