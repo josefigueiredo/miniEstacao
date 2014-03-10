@@ -1,5 +1,5 @@
 // Do not remove the include below
-#include "miniEstacaoV6.h"
+#include "miniEstacao.h"
 
 /*
  Programa oficial
